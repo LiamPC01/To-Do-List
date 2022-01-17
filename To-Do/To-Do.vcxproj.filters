@@ -28,8 +28,5 @@
     <Text Include="tasks.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="temp.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>

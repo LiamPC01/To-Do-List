@@ -4,13 +4,13 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
-int lineNum;
-std::vector<int> listOfNums;
 
-void sortNumOrder();
-void sortNumValues();
-void getLineNum();
+std::vector<std::string> listOfTasks;
+
+void getList();
 void printList();
-void addTask();
-void delTask();
+void addToList();
+void delLine();
+void saveList();
