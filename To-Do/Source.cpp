@@ -1,4 +1,4 @@
-// This program must allow the user to add tasks, remove tasks and view tasks
+// Add, delete and save tasks to the To-Do List
 
 #include "Header.h"
 
