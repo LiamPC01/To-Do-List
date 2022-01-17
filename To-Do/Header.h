@@ -4,8 +4,6 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include <algorithm>
-
 
 std::vector<std::string> listOfTasks;
 
