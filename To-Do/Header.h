@@ -8,7 +8,8 @@
 int lineNum;
 std::vector<int> listOfNums;
 
-void checkNumOrder();
+void sortNumOrder();
+void sortNumValues();
 void getLineNum();
 void printList();
 void addTask();

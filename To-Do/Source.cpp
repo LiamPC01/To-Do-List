@@ -4,7 +4,7 @@
 
 int main()
 {
-	checkNumOrder();
+	sortNumValues();
 	getLineNum();
 	char input;
 	std::cout << "TO-DO LIST\n"
@@ -22,7 +22,7 @@ int main()
 	}
 }
 
-void checkNumOrder()
+void sortNumValues()
 {
 	// Open file
 	std::ifstream inFile("tasks.txt");
@@ -35,35 +35,27 @@ void checkNumOrder()
 		{
 			lineNum = line[0] - '0'; // Converts from char to int
 			listOfNums.push_back(lineNum);
-		}
-
-		// Shows vector positon of each num before sort for debugging
-		std::cout << "listOfNums before sorting:\n";
-		for (int blah = 0; blah < listOfNums.size(); blah++)
-		{
-			std::cout << "listOfNums[" << blah << "] = " << listOfNums[blah] << "\n";
-		}
-
-		// Compare num to next num
-		int prevLineNum = 0;
-		for (int nextLineNum = 1; nextLineNum < listOfNums.size(); nextLineNum++)
-		{
-			// While difference between prevLineNum and nextLineNum is greater than 1
-			while (listOfNums[nextLineNum] > listOfNums[prevLineNum] + 1)
-			{
-				// Decrement
-				listOfNums[nextLineNum]--;
-			}
-			prevLineNum++;
-
-		}
-		std::cout << "listOfNums after sorting:\n";
-		for (int blah = 0; blah < listOfNums.size(); blah++)
-		{
-			std::cout << "listOfNums[" << blah << "] = " << listOfNums[blah] << "\n";
+			// will need to remove duplicates later
 		}
 	}
 
+	// Compare num to next num
+	int prevLineIndex = 0;
+	for (int nextLineIndex = 1; nextLineIndex < listOfNums.size(); nextLineIndex++)
+	{
+		// while difference between prev and next next greater than 1 decrement next
+		while (listOfNums[nextLineIndex] - listOfNums[prevLineIndex] > 1)
+		{
+			listOfNums[nextLineIndex]--;
+		}
+		prevLineIndex++;
+	}
+
+	std::cout << "listOfNums after sorting:\n";
+	for (int i = 0; i < listOfNums.size(); i++)
+	{
+		std::cout << "listOfNums[" << i << "] = " << listOfNums[i] << "\n";
+	}
 }
 
 
@@ -71,8 +63,8 @@ void checkNumOrder()
 void getLineNum()
 {
 	//lineNum = listOfNums.size() + 1;
-	
-	
+
+
 	//check list for last num
 	std::ifstream inFile("tasks.txt");
 	std::string line;
@@ -89,11 +81,13 @@ void getLineNum()
 		lastNum -= '0'; // converts from char to int
 		lineNum = lastNum + 1;
 	}
-	
+
 }
 
 void printList()
 {
+	
+
 	std::string line;
 	// Opens items.txt
 	std::ifstream inFile("tasks.txt");
@@ -119,8 +113,8 @@ void addTask()
 	std::string task;
 
 	// Opens items.txt
-	std::ofstream oFile("tasks.txt", std::ios::app);
-	if (!oFile.is_open())
+	std::ofstream outFile("tasks.txt", std::ios::app);
+	if (!outFile.is_open())
 	{
 		std::cerr << "Error Opening items.txt\n";
 	}
@@ -134,8 +128,8 @@ void addTask()
 	task.insert(1, ": ");
 	lineNum++;
 
-	oFile << task << '\n';
-	oFile.close();
+	outFile << task << '\n';
+	outFile.close();
 	main();
 }
 
@@ -171,5 +165,15 @@ void delTask()
 
 	}
 	std::ofstream delTemp("temp.txt", std::ofstream::trunc); // Erasing temp.tx
+
+	/*
+	// Delete num from vector
+	int delNum;
+	delNum = delChar - '0'; // Convert char to int
+	if (std::count(listOfNums.begin(), listOfNums.end(), delNum))
+	{
+		listOfNums.erase(listOfNums.begin() + delNum);
+	}
+	*/
 	main();
 }
